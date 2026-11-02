@@ -82,8 +82,28 @@ Application éducative pour les élèves et enseignants du Burkina Faso
       Entrer dans l'espace enseignants
     </button>
   </section>
+<section id="francais" class="page">
+  <h2>Français – 2nde C</h2>
+  <p>Choisis un domaine du programme.</p>
 
-  <section id="eleves" class="page">
+  <button onclick="ouvrirRubriqueFrancais('Romans et nouvelles')">Romans et nouvelles</button>
+  <button onclick="ouvrirRubriqueFrancais('Poésie')">Poésie</button>
+  <button onclick="ouvrirRubriqueFrancais('Théâtre')">Théâtre</button>
+  <button onclick="ouvrirRubriqueFrancais('Expression écrite')">Expression écrite</button>
+  <button onclick="ouvrirRubriqueFrancais('Expression orale')">Expression orale</button>
+  <button onclick="ouvrirRubriqueFrancais('Culture littéraire')">Culture littéraire</button>
+  <button class="secondary" onclick="showPage('seconde')">Retour aux matières</button>
+</section>
+
+<section id="rubriqueFrancais" class="page">
+  <h2 id="titreRubriqueFrancais">Français</h2>
+  <p id="descriptionRubriqueFrancais">Choisis une ressource.</p>
+  <button onclick="ouvrirRessourceFrancais('Cours et leçons')">Cours et leçons</button>
+  <button onclick="ouvrirRessourceFrancais('Exercices')">Exercices</button>
+  <button onclick="ouvrirRessourceFrancais('Devoirs et compositions')">Devoirs et compositions</button>
+  <button onclick="ouvrirRessourceFrancais('Corrigés détaillés')">Corrigés détaillés</button>
+  <button class="secondary" onclick="showPage('francais')">Retour</button>
+</section><section id="eleves" class="page">
     <h2>Espace élèves</h2>
     <p>Choisis ta classe pour commencer.</p>
     <button onclick="showPage('seconde')">Seconde C</button>
