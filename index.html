@@ -125,6 +125,135 @@ Application éducative pour les élèves et enseignants du Burkina Faso
     <button onclick="showPage('devoirs')">Devoirs et compositions</button>
     <button onclick="showPage('corriges')">Corrigés détaillés</button>
     <button class="secondary" onclick="showPage('seconde')">Retour aux matières</button>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f47721">
+  <title>Ma Bibliothèque Scolaire – Burkina Faso</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background: #171717;
+      color: white;
+      text-align: center;
+      padding: 22px 10px;
+      border-bottom: 5px solid #f47721;
+    }
+    header h1 { margin: 0; font-size: 23px; }
+    main {
+      max-width: 850px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+    .page {
+      display: none;
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px #ddd;
+    }
+    .page.active { display: block; }
+    h2 { color: #e96d16; }
+    button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 8px;
+      background: #f47721;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #d85f0d; }
+    .secondary { background: #222; }
+    .intro { line-height: 1.6; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Ma Bibliothèque Scolaire</h1>
+  <p>BURKINA FASO</p>
+</header>
+
+<main>
+
+  <section id="accueil" class="page active">
+    <h2>Bienvenue !</h2>
+    <p class="intro">
+      Une seule bibliothèque pour apprendre, réviser et réussir.
+      Retrouvez des cours, des exercices, des devoirs et leurs corrigés.
+    </p>
+    <button onclick="showPage('eleves')">Entrer dans l'espace élèves</button>
+    <button class="secondary" onclick="showPage('enseignants')">
+      Entrer dans l'espace enseignants
+    </button>
+  </section>
+
+  <section id="eleves" class="page">
+    <h2>Espace élèves</h2>
+    <p>Choisis ta classe pour commencer.</p>
+    <button onclick="showPage('seconde')">Seconde C</button>
+    <button class="secondary" onclick="showPage('accueil')">Retour à l'accueil</button>
+  </section>
+
+  <section id="seconde" class="page">
+    <h2>Classe de 2nde C</h2>
+    <p>Choisis une matière.</p>
+    <div id="matieres"></div>
+    <button class="secondary" onclick="showPage('eleves')">Retour</button>
+  </section>
+
+  <!-- RUBRIQUES DE FRANÇAIS -->
+
+  <section id="francais" class="page">
+    <h2>Français – 2nde C</h2>
+    <p>Choisis un domaine du programme.</p>
+    <button onclick="ouvrirRubriqueFrancais('Romans et nouvelles')">Romans et nouvelles</button>
+    <button onclick="ouvrirRubriqueFrancais('Poésie')">Poésie</button>
+    <button onclick="ouvrirRubriqueFrancais('Théâtre')">Théâtre</button>
+    <button onclick="ouvrirRubriqueFrancais('Expression écrite')">Expression écrite</button>
+    <button onclick="ouvrirRubriqueFrancais('Expression orale')">Expression orale</button>
+    <button onclick="ouvrirRubriqueFrancais('Culture littéraire')">Culture littéraire</button>
+    <button class="secondary" onclick="showPage('seconde')">Retour aux matières</button>
+  </section>
+
+  <section id="rubriqueFrancais" class="page">
+    <h2 id="titreRubriqueFrancais">Français</h2>
+    <p id="descriptionRubriqueFrancais">Choisis le type de ressource.</p>
+    <button onclick="ouvrirRessourceFrancais('Cours et leçons')">Cours et leçons</button>
+    <button onclick="ouvrirRessourceFrancais('Exercices')">Exercices</button>
+    <button onclick="ouvrirRessourceFrancais('Devoirs et compositions')">Devoirs et compositions</button>
+    <button onclick="ouvrirRessourceFrancais('Corrigés détaillés')">Corrigés détaillés</button>
+    <button class="secondary" onclick="showPage('francais')">Retour aux domaines</button>
+  </section>
+
+  <!-- AUTRES MATIÈRES -->
+
+  <section id="matiere" class="page">
+    <h2 id="titreMatiere">Matière</h2>
+    <p>Choisis ce que tu souhaites consulter.</p>
+    <button onclick="showPage('cours')">Cours et leçons</button>
+    <button onclick="showPage('exercices')">Exercices</button>
+    <button onclick="showPage('devoirs')">Devoirs et compositions</button>
+    <button onclick="showPage('corriges')">Corrigés détaillés</button>
+    <button class="secondary" onclick="showPage('seconde')">Retour aux matières</button>
   </section>
 
   <section id="cours" class="page">
@@ -151,11 +280,11 @@ Application éducative pour les élèves et enseignants du Burkina Faso
     <button class="secondary" onclick="showPage('matiere')">Retour</button>
   </section>
 
+  <!-- ESPACE ENSEIGNANTS -->
+
   <section id="enseignants" class="page">
     <h2>Espace enseignants</h2>
-    <p class="intro">
-      Un espace de préparation pédagogique pour les enseignants.
-    </p>
+    <p class="intro">Un espace de préparation pédagogique pour les enseignants.</p>
     <button onclick="showPage('preparation')">Préparation des cours</button>
     <button onclick="showPage('evaluations')">Évaluations et devoirs</button>
     <button onclick="showPage('ressources')">Ressources pédagogiques</button>
@@ -200,6 +329,36 @@ Application éducative pour les élèves et enseignants du Burkina Faso
     }
   }
 
+  function ouvrirRubriqueFrancais(nom) {
+    document.getElementById('titreRubriqueFrancais').textContent = nom;
+
+    var descriptions = {
+      'Romans et nouvelles': 'Étude des romans, nouvelles, personnages, thèmes et narration.',
+      'Poésie': 'Étude des formes poétiques, des rythmes et des figures de style.',
+      'Théâtre': 'Étude des dialogues, didascalies, actes, scènes et représentations.',
+      'Expression écrite': 'Résumé, dissertation, commentaire composé et écrits fonctionnels.',
+      'Expression orale': 'Lecture expliquée et entraînement à la prise de parole.',
+      'Culture littéraire': 'Histoire littéraire française et histoire littéraire africaine.'
+    };
+
+    document.getElementById('descriptionRubriqueFrancais').textContent = descriptions[nom];
+    showPage('rubriqueFrancais');
+  }
+
+  function ouvrirRessourceFrancais(type) {
+    document.getElementById('titreRubriqueFrancais').textContent = 'Français – ' + type;
+
+    var textes = {
+      'Cours et leçons': 'Les cours de français seront classés par domaine et par chapitre.',
+      'Exercices': 'Les exercices de français seront classés par domaine.',
+      'Devoirs et compositions': 'Les sujets d’entraînement seront classés ici.',
+      'Corrigés détaillés': 'Les corrigés expliqués seront classés ici.'
+    };
+
+    document.getElementById('descriptionRubriqueFrancais').textContent = textes[type];
+    showPage('rubriqueFrancais');
+  }
+
   var listeMatieres = [
     "Français",
     "Histoire-Géographie",
@@ -217,8 +376,12 @@ Application éducative pour les élèves et enseignants du Burkina Faso
     bouton.textContent = matiere;
 
     bouton.onclick = function() {
-      document.getElementById('titreMatiere').textContent = matiere;
-      showPage('matiere');
+      if (matiere === "Français") {
+        showPage('francais');
+      } else {
+        document.getElementById('titreMatiere').textContent = matiere;
+        showPage('matiere');
+      }
     };
 
     conteneur.appendChild(bouton);
