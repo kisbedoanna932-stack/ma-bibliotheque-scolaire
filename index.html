@@ -3,48 +3,207 @@ Application éducative pour les élèves et enseignants du Burkina Faso
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#123c2c">
-<title>Ma Bibliothèque Scolaire – Burkina Faso</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f7f5;color:#18352a}
-header{background:#123c2c;color:white;text-align:center;padding:28px 15px}
-header h1{margin:0;font-size:25px}
-header p{margin:10px 0 0}
-main{max-width:850px;margin:25px auto;padding:15px}
-h2{text-align:center}
-.intro{text-align:center;line-height:1.6}
-.espaces{display:grid;grid-template-columns:1fr;gap:18px;margin-top:25px}
-.carte{background:white;border-radius:14px;padding:23px;box-shadow:0 3px 12px #00000012}
-.carte h3{margin-top:0;color:#176343}
-button{background:#176343;color:white;border:0;border-radius:8px;padding:13px 18px;font-size:16px;width:100%;cursor:pointer}
-footer{text-align:center;padding:25px;color:#65756d;font-size:13px}
-@media(min-width:600px){.espaces{grid-template-columns:1fr 1fr}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f47721">
+  <title>Ma Bibliothèque Scolaire – Burkina Faso</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background: #171717;
+      color: white;
+      text-align: center;
+      padding: 22px 10px;
+      border-bottom: 5px solid #f47721;
+    }
+    header h1 { margin: 0; font-size: 23px; }
+    main {
+      max-width: 850px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+    .page {
+      display: none;
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px #ddd;
+    }
+    .page.active { display: block; }
+    h2 { color: #e96d16; }
+    button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 8px;
+      background: #f47721;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #d85f0d; }
+    .secondary { background: #222; }
+    .intro { line-height: 1.6; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
+
 <header>
-<h1>🇧🇫 Ma Bibliothèque Scolaire</h1>
-<p>Burkina Faso – Tout pour apprendre et enseigner</p>
+  <h1>Ma Bibliothèque Scolaire</h1>
+  <p>BURKINA FASO</p>
 </header>
+
 <main>
-<h2>Bienvenue dans ta bibliothèque !</h2>
-<p class="intro">Une plateforme éducative pour apprendre, réviser, préparer les devoirs et accompagner les enseignants.</p>
-<div class="espaces">
-<section class="carte">
-<h3>📚 Espace élèves</h3>
-<p>Cours, exercices, devoirs, corrigés et préparation aux examens.</p>
-<button onclick="alert('Bienvenue dans l’espace élèves !')">Entrer dans l’espace élèves</button>
-</section>
-<section class="carte">
-<h3>👩‍🏫 Espace enseignants</h3>
-<p>Préparation des cours, fiches pédagogiques, évaluations et corrigés.</p>
-<button onclick="alert('Espace enseignants : en préparation.')">Entrer dans l’espace enseignants</button>
-</section>
-</div>
+
+  <section id="accueil" class="page active">
+    <h2>Bienvenue !</h2>
+    <p class="intro">
+      Une seule bibliothèque pour apprendre, réviser et réussir.
+      Retrouvez des cours, des exercices, des devoirs et leurs corrigés.
+    </p>
+    <button onclick="showPage('eleves')">
+      Entrer dans l'espace élèves
+    </button>
+    <button class="secondary" onclick="showPage('enseignants')">
+      Entrer dans l'espace enseignants
+    </button>
+  </section>
+
+  <section id="eleves" class="page">
+    <h2>Espace élèves</h2>
+    <p>Choisis ta classe pour commencer.</p>
+    <button onclick="showPage('seconde')">Seconde C</button>
+    <button class="secondary" onclick="showPage('accueil')">Retour à l'accueil</button>
+  </section>
+
+  <section id="seconde" class="page">
+    <h2>Classe de 2nde C</h2>
+    <p>Choisis une matière.</p>
+    <div id="matieres"></div>
+    <button class="secondary" onclick="showPage('eleves')">Retour</button>
+  </section>
+
+  <section id="matiere" class="page">
+    <h2 id="titreMatiere">Matière</h2>
+    <p>Choisis ce que tu souhaites consulter.</p>
+    <button onclick="showPage('cours')">Cours et leçons</button>
+    <button onclick="showPage('exercices')">Exercices</button>
+    <button onclick="showPage('devoirs')">Devoirs et compositions</button>
+    <button onclick="showPage('corriges')">Corrigés détaillés</button>
+    <button class="secondary" onclick="showPage('seconde')">Retour aux matières</button>
+  </section>
+
+  <section id="cours" class="page">
+    <h2>Cours et leçons</h2>
+    <p>Les cours de cette matière seront organisés ici, chapitre par chapitre.</p>
+    <button class="secondary" onclick="showPage('matiere')">Retour</button>
+  </section>
+
+  <section id="exercices" class="page">
+    <h2>Exercices</h2>
+    <p>Les exercices d'application seront disponibles ici.</p>
+    <button class="secondary" onclick="showPage('matiere')">Retour</button>
+  </section>
+
+  <section id="devoirs" class="page">
+    <h2>Devoirs et compositions</h2>
+    <p>Les sujets d'entraînement seront classés ici.</p>
+    <button class="secondary" onclick="showPage('matiere')">Retour</button>
+  </section>
+
+  <section id="corriges" class="page">
+    <h2>Corrigés détaillés</h2>
+    <p>Les corrections expliquées étape par étape seront disponibles ici.</p>
+    <button class="secondary" onclick="showPage('matiere')">Retour</button>
+  </section>
+
+  <section id="enseignants" class="page">
+    <h2>Espace enseignants</h2>
+    <p class="intro">
+      Un espace de préparation pédagogique pour les enseignants.
+    </p>
+    <button onclick="showPage('preparation')">Préparation des cours</button>
+    <button onclick="showPage('evaluations')">Évaluations et devoirs</button>
+    <button onclick="showPage('ressources')">Ressources pédagogiques</button>
+    <button class="secondary" onclick="showPage('accueil')">Retour à l'accueil</button>
+  </section>
+
+  <section id="preparation" class="page">
+    <h2>Préparation des cours</h2>
+    <p>Les fiches de préparation seront organisées ici.</p>
+    <button class="secondary" onclick="showPage('enseignants')">Retour</button>
+  </section>
+
+  <section id="evaluations" class="page">
+    <h2>Évaluations et devoirs</h2>
+    <p>Les ressources d'évaluation seront organisées ici.</p>
+    <button class="secondary" onclick="showPage('enseignants')">Retour</button>
+  </section>
+
+  <section id="ressources" class="page">
+    <h2>Ressources pédagogiques</h2>
+    <p>Les ressources pour les enseignants seront organisées ici.</p>
+    <button class="secondary" onclick="showPage('enseignants')">Retour</button>
+  </section>
+
 </main>
-<footer>Ma Bibliothèque Scolaire – Burkina Faso</footer>
+
+<footer>
+  Ma Bibliothèque Scolaire – Burkina Faso
+</footer>
+
+<script>
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(function(page) {
+      page.classList.remove('active');
+    });
+
+    var destination = document.getElementById(pageId);
+
+    if (destination) {
+      destination.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  var listeMatieres = [
+    "Français",
+    "Histoire-Géographie",
+    "Anglais",
+    "Mathématiques",
+    "SVT",
+    "Physique-Chimie",
+    "Philosophie"
+  ];
+
+  var conteneur = document.getElementById('matieres');
+
+  listeMatieres.forEach(function(matiere) {
+    var bouton = document.createElement('button');
+    bouton.textContent = matiere;
+
+    bouton.onclick = function() {
+      document.getElementById('titreMatiere').textContent = matiere;
+      showPage('matiere');
+    };
+
+    conteneur.appendChild(bouton);
+  });
+</script>
+
 </body>
 </html>
